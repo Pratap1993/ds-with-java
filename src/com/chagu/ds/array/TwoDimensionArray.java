@@ -1,7 +1,7 @@
 package com.chagu.ds.array;
 
 public class TwoDimensionArray {
-    private final int[][] arr;
+    private int[][] arr;
     private boolean isAssigned = false;
 
     public TwoDimensionArray(int rowSize, int columnSize) {
@@ -58,6 +58,21 @@ public class TwoDimensionArray {
         System.out.println("Value " + value + " is not present in the array.");
     }
 
+    public void deleteValue(int row, int column) {
+        validateRowColumn(row, column);
+        if (arr[row][column] != Integer.MIN_VALUE) {
+            arr[row][column] = Integer.MIN_VALUE;
+            System.out.println("Value deleted from [" + row + "][" + column + "]");
+        }
+    }
+
+    public void deleteArray() {
+        if (arr != null) {
+            arr = null;
+            System.out.println("Array deleted");
+        }
+    }
+
     private void validateRowColumnSize(int rowSize, int columnSize) {
         if (rowSize < 1 && columnSize < 1)
             throw new RuntimeException("Row size and column size must be grater than zero.");
@@ -83,5 +98,7 @@ public class TwoDimensionArray {
         twoDimensionArray.traverseTheArray();
         System.out.println("Value at cell number [2][2] is " + twoDimensionArray.accessCell(2, 2));
         twoDimensionArray.searchValue(25);
+        twoDimensionArray.deleteValue(1, 2);
+        twoDimensionArray.deleteArray();
     }
 }
